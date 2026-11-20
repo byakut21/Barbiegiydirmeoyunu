@@ -9,7 +9,9 @@
 - 👠 Ayakkabı renkleri
 - 👧 Ten ve göz rengi
 - 🏞️ Arka planlar: oda, bahçe, şato, deniz, gökkuşağı
-- 🎲 Rastgele kombin, 💃 dans, 🔊 ses aç/kapa
+- 🗣️ Türkçe konuşur: seçilen renk ve kıyafeti söyler, saçına, yüzüne, elbisesine dokununca kıkırdar ve teşekkür eder
+- 🎵 Orijinal neşeli arka plan müziği (aç/kapa)
+- 🎲 Rastgele kombin, 💃 dans, 🔊 tüm sesleri aç/kapa
 
 ## APK nasıl alınır?
 Her `main` gönderiminde GitHub Actions APK'yı derler. **Releases** bölümünden `PrensesGiydirme.apk` indirip telefona kurun

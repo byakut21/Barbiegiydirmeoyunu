@@ -199,7 +199,7 @@
     const mermaid = s.dress === 'denizkizi';
     return `
       ${mermaid ? '' : `<path d="M138 330 L136 495 M162 330 L164 495" stroke="${k}" stroke-width="20" stroke-linecap="round"/>`}
-      ${mermaid ? '' : shoes(s)}
+      ${mermaid ? '' : `<g data-part="ayakkabi">${shoes(s)}</g>`}
       <path d="M118 210 Q100 260 92 320 M182 210 Q200 260 208 320" stroke="${k}" stroke-width="17" stroke-linecap="round" fill="none"/>
       <circle cx="91" cy="325" r="11" fill="${k}"/><circle cx="209" cy="325" r="11" fill="${k}"/>
       <rect x="120" y="198" width="60" height="140" rx="22" fill="${k}"/>
@@ -216,7 +216,7 @@
     opts = opts || {};
     const dr = dress(s);
     return (opts.bg === false ? '' : (BG[s.bg] || BG.oda)()) +
-      `<g class="doll">${dr.back}${hairBack(s)}${body(s)}${dr.front}${head(s)}${face(s)}${hairFront(s)}${clip(s)}</g>`;
+      `<g class="doll"><g data-part="elbise">${dr.back}</g><g data-part="sac">${hairBack(s)}</g><g data-part="beden">${body(s)}</g><g data-part="elbise">${dr.front}</g><g data-part="yuz">${head(s)}${face(s)}</g><g data-part="sac">${hairFront(s)}</g><g data-part="toka">${clip(s)}</g></g>`;
   }
 
   const api = { doll, shade, BG };
