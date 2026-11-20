@@ -42,8 +42,31 @@
   @keyframes up { 0% { opacity: 0; transform: translateY(0) scale(.3); } 20% { opacity: 1; transform: scale(1.2); } 100% { opacity: 0; transform: translateY(-80px) scale(.8); } }
   .bounce { animation: bn .4s; }
   @keyframes bn { 0%,100% { transform: scale(1); } 40% { transform: scale(1.03, .97); } 70% { transform: scale(.98, 1.03); } }
-  .dance .doll { animation: dn 1.6s ease-in-out; transform-origin: 150px 500px; }
-  @keyframes dn { 0%,100% { transform: rotate(0); } 15% { transform: rotate(-6deg) translateY(-8px); } 30% { transform: rotate(6deg); } 45% { transform: rotate(-6deg) translateY(-8px); } 60% { transform: rotate(6deg); } 80% { transform: translateY(-14px); } }
+  .doll, .armL, .armR, .legL, .legR { transform-box: view-box; }
+  .armL { transform-origin: 118px 210px; } .armR { transform-origin: 182px 210px; }
+  .legL { transform-origin: 138px 330px; } .legR { transform-origin: 162px 330px; }
+  /* DANS */
+  .dance .doll { animation: dn 4s ease-in-out; transform-origin: 150px 500px; }
+  @keyframes dn { 0%,100% { transform: none; } 10% { transform: rotate(-7deg) translateY(-12px); } 20% { transform: rotate(7deg); } 30% { transform: rotate(-7deg) translateY(-12px); } 40% { transform: rotate(7deg); }
+    50% { transform: scaleX(-1); } 60% { transform: translateY(-20px); } 70% { transform: rotate(-7deg); } 80% { transform: rotate(7deg) translateY(-12px); } 90% { transform: translateY(-24px); } }
+  .dance .armL { animation: wavL .5s ease-in-out 8 alternate; }
+  .dance .armR { animation: wavR .5s ease-in-out 8 alternate; }
+  @keyframes wavL { from { transform: rotate(110deg); } to { transform: rotate(165deg); } }
+  @keyframes wavR { from { transform: rotate(-165deg); } to { transform: rotate(-110deg); } }
+  .dance .legL { animation: kick .5s ease-in-out 8 alternate; }
+  .dance .legR { animation: kick .5s ease-in-out 8 alternate-reverse; }
+  @keyframes kick { from { transform: rotate(0); } to { transform: rotate(14deg); } }
+  /* YÜRÜYÜŞ */
+  .walk .doll { animation: wk 6s linear; transform-origin: 150px 300px; }
+  @keyframes wk { 0% { transform: translateX(0); } 22% { transform: translateX(75px); } 26% { transform: translateX(75px) scaleX(-1); }
+    72% { transform: translateX(-75px) scaleX(-1); } 76% { transform: translateX(-75px); } 100% { transform: translateX(0); } }
+  .walk .legL { animation: stp .5s ease-in-out 12 alternate; }
+  .walk .legR { animation: stp .5s ease-in-out 12 alternate-reverse; }
+  @keyframes stp { from { transform: rotate(-16deg); } to { transform: rotate(16deg); } }
+  .walk .armL { animation: swg .5s ease-in-out 12 alternate-reverse; }
+  .walk .armR { animation: swg .5s ease-in-out 12 alternate; }
+  @keyframes swg { from { transform: rotate(-14deg); } to { transform: rotate(14deg); } }
+  #walk { background: #3ddc97; }
 </style>
 </head>
 <body>
@@ -53,6 +76,7 @@
     <div class="side">
       <button class="round" id="rand">🎲</button>
       <button class="round" id="dance" style="background:#b36bff">💃</button>
+      <button class="round" id="walk">🚶‍♀️</button>
     </div>
     <div class="side left"><button class="round" id="mute">🔊</button><button class="round small" id="music">🎵</button></div>
   </div>

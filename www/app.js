@@ -241,7 +241,7 @@
     if (part === 'sac' || part === 'yuz' || part === 'beden') giggle(); else if (part === 'ayakkabi') boing(); else chime();
     buzz(); sparkle(); hearts(ev);
     const cls = partFx[part] || 'bounce';
-    stage.classList.remove('wiggle', 'twirl', 'hop', 'bounce'); void stage.offsetWidth; stage.classList.add(cls);
+    anim(cls, 900);
     setTimeout(() => say(pickS(THANKS[part] || THANKS.beden)), 250);
   });
   function hearts(ev) {
@@ -261,10 +261,34 @@
   };
   setTimeout(() => say('Merhaba! Beni giydirir misin?'), 800);
   document.addEventListener('pointerdown', function hi() { document.removeEventListener('pointerdown', hi); if (Date.now() - lastSay > 5000) say('Merhaba! Beni giydirir misin?'); });
+  // ---------- DANS & YÜRÜYÜŞ ----------
+  let animTimer = null;
+  function anim(cls, ms) {
+    stage.classList.remove('dance', 'walk', 'wiggle', 'twirl', 'hop', 'bounce'); void stage.offsetWidth;
+    stage.classList.add(cls);
+    clearTimeout(animTimer); animTimer = setTimeout(() => stage.classList.remove(cls), ms);
+  }
+  // Orijinal, hareketli dans ezgisi (yarım ton, C5=0)
+  const DANCE = [0, 4, 7, 12, 7, 4, 9, 7, 5, 9, 12, 9, 7, 4, 2, 0];
   document.getElementById('dance').onclick = () => {
-    stage.classList.remove('dance'); void stage.offsetWidth; stage.classList.add('dance');
-    [0, 2, 4, 2, 5, 4, 2, 0].forEach((n, i) => tone(NOTES[n], 0.22, 'triangle', i * 0.2));
-    for (let k = 0; k < 4; k++) setTimeout(sparkle, k * 400);
+    anim('dance', 4000); buzz();
+    say(pickS(['Hadi dans edelim!', 'Dans zamanı! Ellerini çırp!', 'Dönelim, zıplayalım!']));
+    try { ac = ac || new (window.AudioContext || window.webkitAudioContext)(); } catch (e) {}
+    DANCE.forEach((n, i) => {
+      tone(mf(n), 0.2, 'square', 0.4 + i * 0.22, 0.05);
+      if (i % 2 === 0) tone(mf(n - 24), 0.18, 'triangle', 0.4 + i * 0.22, 0.12);
+      if (i % 4 === 2) tone(2400, 0.04, 'square', 0.4 + i * 0.22, 0.04); // alkış tıkı
+    });
+    for (let k = 0; k < 8; k++) setTimeout(sparkle, k * 450);
+  };
+  document.getElementById('walk').onclick = () => {
+    anim('walk', 6000); buzz();
+    const mermaid = S.dress === 'denizkizi';
+    say(mermaid ? 'Yüzmeye gidiyorum! Şıp şıp şıp!' : pickS(['Yürüyüşe çıkıyorum! Tık tık tık!', 'Bak nasıl yürüyorum!', 'Gezmeye gidiyorum!']));
+    for (let i = 0; i < 12; i++) {
+      setTimeout(() => { if (mermaid) tone(700 + Math.random() * 300, 0.08, 'sine', 0, 0.1); else { tone(i % 2 ? 320 : 260, 0.07, 'triangle', 0, 0.2); } }, 300 + i * 500);
+    }
+    setTimeout(() => say('Geri geldim! Merhaba!'), 5600);
   };
   const muteBtn = document.getElementById('mute');
   muteBtn.onclick = () => {

@@ -188,20 +188,20 @@
     return { back: '', front: '' };
   }
 
-  function shoes(s) {
+  function shoe(s, x) {
     const c = s.shoes, l = shade(c, 0.5);
-    return [134, 166].map((x, i) => `<path d="M${x - 15} 500 Q${x - 15} 488 ${x} 488 Q${x + 15} 488 ${x + 15 + (i ? 4 : -4) * 0} 500 Q${x + 18} 512 ${x} 512 Q${x - 18} 512 ${x - 15} 500Z" fill="${c}"/>
-      <circle cx="${x}" cy="492" r="4" fill="${l}"/>`).join('');
+    return `<path d="M${x - 15} 500 Q${x - 15} 488 ${x} 488 Q${x + 15} 488 ${x + 15} 500 Q${x + 18} 512 ${x} 512 Q${x - 18} 512 ${x - 15} 500Z" fill="${c}"/>
+      <circle cx="${x}" cy="492" r="4" fill="${l}"/>`;
   }
 
   function body(s) {
     const k = s.skin, kd = shade(k, -0.12);
     const mermaid = s.dress === 'denizkizi';
+    const leg = (cls, x1, x2, sx) => `<g class="${cls}"><path d="M${x1} 330 L${x2} 495" stroke="${k}" stroke-width="20" stroke-linecap="round"/><g data-part="ayakkabi">${shoe(s, sx)}</g></g>`;
     return `
-      ${mermaid ? '' : `<path d="M138 330 L136 495 M162 330 L164 495" stroke="${k}" stroke-width="20" stroke-linecap="round"/>`}
-      ${mermaid ? '' : `<g data-part="ayakkabi">${shoes(s)}</g>`}
-      <path d="M118 210 Q100 260 92 320 M182 210 Q200 260 208 320" stroke="${k}" stroke-width="17" stroke-linecap="round" fill="none"/>
-      <circle cx="91" cy="325" r="11" fill="${k}"/><circle cx="209" cy="325" r="11" fill="${k}"/>
+      ${mermaid ? '' : leg('legL', 138, 136, 134) + leg('legR', 162, 164, 166)}
+      <g class="armL"><path d="M118 210 Q100 260 92 320" stroke="${k}" stroke-width="17" stroke-linecap="round" fill="none"/><circle cx="91" cy="325" r="11" fill="${k}"/></g>
+      <g class="armR"><path d="M182 210 Q200 260 208 320" stroke="${k}" stroke-width="17" stroke-linecap="round" fill="none"/><circle cx="209" cy="325" r="11" fill="${k}"/></g>
       <rect x="120" y="198" width="60" height="140" rx="22" fill="${k}"/>
       <rect x="141" y="165" width="18" height="40" rx="6" fill="${kd}"/>`;
   }

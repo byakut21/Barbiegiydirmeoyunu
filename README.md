@@ -11,7 +11,9 @@
 - 🏞️ Arka planlar: oda, bahçe, şato, deniz, gökkuşağı
 - 🗣️ Türkçe konuşur: seçilen renk ve kıyafeti söyler, saçına, yüzüne, elbisesine dokununca kıkırdar ve teşekkür eder
 - 🎵 Orijinal neşeli arka plan müziği (aç/kapa)
-- 🎲 Rastgele kombin, 💃 dans, 🔊 tüm sesleri aç/kapa
+- 💃 Dans: kollar havada, zıplama, dans müziği
+- 🚶‍♀️ Yürüme: sahnede yürüyüp geri döner, ayak sesleri
+- 🎲 Rastgele kombin, 🔊 tüm sesleri aç/kapa
 
 ## APK nasıl alınır?
 Her `main` gönderiminde GitHub Actions APK'yı derler. **Releases** bölümünden `PrensesGiydirme.apk` indirip telefona kurun
