@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<title>Prenses Giydirme</title>
+<style>
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; user-select: none; -webkit-user-select: none; }
+  html, body { margin: 0; height: 100%; overflow: hidden; background: #ffe3f3; font-family: system-ui, sans-serif; touch-action: manipulation; }
+  #app { display: flex; flex-direction: column; height: 100%; padding-top: env(safe-area-inset-top); padding-bottom: env(safe-area-inset-bottom); }
+  #stageWrap { flex: 1; min-height: 0; position: relative; display: flex; justify-content: center; }
+  #stage { height: 100%; aspect-ratio: 300/560; max-width: 100%; border-radius: 0 0 28px 28px; overflow: hidden; box-shadow: 0 6px 20px #ff6fb555; }
+  #stage svg, #stage { display: block; }
+  .side { position: absolute; right: 10px; top: 10px; display: flex; flex-direction: column; gap: 12px; }
+  .side.left { right: auto; left: 10px; }
+  .round { width: 64px; height: 64px; border-radius: 50%; border: 4px solid #fff; background: #ff6fb5; font-size: 32px; box-shadow: 0 4px 10px #0002; display: grid; place-items: center; padding: 0; }
+  .round:active { transform: scale(.9); }
+  #mute { width: 48px; height: 48px; font-size: 22px; background: #fff; }
+  #options { display: flex; gap: 12px; overflow-x: auto; padding: 12px; background: #fff; scroll-behavior: smooth; align-items: center; min-height: 112px; }
+  #options::-webkit-scrollbar { display: none; }
+  .opt { flex: 0 0 auto; width: 88px; height: 88px; border-radius: 22px; border: 4px solid #ffd1ea; background: #fff7fc; padding: 4px; position: relative; display: grid; place-items: center; transition: transform .15s; }
+  .opt svg { width: 100%; height: 100%; }
+  .opt.sel { border-color: #ff3d9a; transform: scale(1.08); box-shadow: 0 0 0 4px #ffb3d9; }
+  .opt:active { transform: scale(.92); }
+  .sw { width: 60px; height: 60px; border-radius: 50%; display: block; border: 3px solid #0001; }
+  .emo { position: absolute; bottom: 2px; right: 4px; font-size: 26px; }
+  .none { font-size: 40px; }
+  .sep { flex: 0 0 4px; height: 70px; background: #ffd1ea; border-radius: 2px; }
+  #tabs { display: flex; justify-content: space-around; background: #ff6fb5; padding: 8px 4px; gap: 4px; }
+  .tab { flex: 1; height: 64px; font-size: 34px; border: none; border-radius: 18px; background: transparent; padding: 0; }
+  .tab.on { background: #fff; box-shadow: 0 3px 8px #0002; }
+  #fx { position: fixed; inset: 0; pointer-events: none; }
+  .spark { position: absolute; font-size: 30px; animation: up 1.2s ease-out forwards; opacity: 0; }
+  @keyframes up { 0% { opacity: 0; transform: translateY(0) scale(.3); } 20% { opacity: 1; transform: scale(1.2); } 100% { opacity: 0; transform: translateY(-80px) scale(.8); } }
+  .bounce { animation: bn .4s; }
+  @keyframes bn { 0%,100% { transform: scale(1); } 40% { transform: scale(1.03, .97); } 70% { transform: scale(.98, 1.03); } }
+  .dance .doll { animation: dn 1.6s ease-in-out; transform-origin: 150px 500px; }
+  @keyframes dn { 0%,100% { transform: rotate(0); } 15% { transform: rotate(-6deg) translateY(-8px); } 30% { transform: rotate(6deg); } 45% { transform: rotate(-6deg) translateY(-8px); } 60% { transform: rotate(6deg); } 80% { transform: translateY(-14px); } }
+</style>
+</head>
+<body>
+<div id="app">
+  <div id="stageWrap">
+    <svg id="stage" viewBox="0 0 300 560" xmlns="http://www.w3.org/2000/svg"></svg>
+    <div class="side">
+      <button class="round" id="rand">🎲</button>
+      <button class="round" id="dance" style="background:#b36bff">💃</button>
+    </div>
+    <div class="side left"><button class="round" id="mute">🔊</button></div>
+  </div>
+  <div id="options"></div>
+  <div id="tabs"></div>
+</div>
+<div id="fx"></div>
+<script src="draw.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,6 @@
+{
+  "appId": "com.burak.prensesgiydirme",
+  "appName": "Prenses Giydirme",
+  "webDir": "www",
+  "android": { "backgroundColor": "#ffe3f3" }
+}
