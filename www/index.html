@@ -15,7 +15,7 @@
   .side.left { right: auto; left: 10px; }
   .round { width: 64px; height: 64px; border-radius: 50%; border: 4px solid #fff; background: #ff6fb5; font-size: 32px; box-shadow: 0 4px 10px #0002; display: grid; place-items: center; padding: 0; }
   .round:active { transform: scale(.9); }
-  #mute, #music { width: 48px; height: 48px; font-size: 22px; background: #fff; }
+  #mute, #music, #voice { width: 48px; height: 48px; font-size: 22px; background: #fff; }
   #music.off { opacity: .4; }
   #stage [data-part] { cursor: pointer; }
   .wiggle .doll { animation: wg .6s; transform-origin: 150px 300px; }
@@ -56,6 +56,16 @@
   .kiss { position: absolute; font-size: 40px; opacity: 0; animation: kissFly 1.8s ease-out forwards; }
   @keyframes kissFly { 0% { opacity: 0; transform: translate(0,0) scale(.3); } 15% { opacity: 1; } 100% { opacity: 0; transform: translate(var(--dx), var(--dy)) scale(2.2) rotate(20deg); } }
 
+  /* GÜLME */
+  .laughing .mouthN, .laughing .mouthK, .laughing .eye { display: none; } .laughing .mouthL, .laughing .eyeH { display: inline; }
+  .laughing .doll { animation: lgh 1.9s ease-in-out; transform-origin: 150px 510px; }
+  @keyframes lgh { 0%,100% { transform: none; } 10%,30%,50%,70% { transform: rotate(-3deg) translateY(-6px); } 20%,40%,60%,80% { transform: rotate(3deg); } }
+  .laughing .headG { animation: lghH .22s ease-in-out 8 alternate; }
+  @keyframes lghH { from { transform: rotate(-4deg) translateY(1px); } to { transform: rotate(4deg) translateY(-3px); } }
+  .laughing .armL { animation: lghAL 1.9s ease-in-out; } .laughing .armR { animation: lghAR 1.9s ease-in-out; }
+  @keyframes lghAL { 0%,100% { transform: rotate(0); } 15%,85% { transform: rotate(-40deg); } }
+  @keyframes lghAR { 0%,100% { transform: rotate(0); } 15%,85% { transform: rotate(40deg); } }
+  .blink .eye { transform: scaleY(.1); }
   /* ÖPÜCÜK */
   .kissing .mouthN { display: none; } .kissing .mouthK { display: inline; }
   .kissing .armR { animation: blow 1.4s ease-in-out; }
@@ -129,7 +139,7 @@
       <button class="round" id="dance" style="background:#b36bff">💃</button>
       <button class="round" id="walk">🚶‍♀️</button>
     </div>
-    <div class="side left"><button class="round" id="mute">🔊</button><button class="round small" id="music">🎵</button></div>
+    <div class="side left"><button class="round" id="mute">🔊</button><button class="round small" id="music">🎵</button><button class="round small" id="voice">👧</button></div>
   </div>
   <div id="options"></div>
   <div id="tabs"></div>
@@ -137,6 +147,7 @@
 <div id="fx"></div>
 <div id="brush"></div>
 <script src="draw.js"></script>
+<script src="phrases.js"></script>
 <script src="app.js"></script>
 </body>
 </html>

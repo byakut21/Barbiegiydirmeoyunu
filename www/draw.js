@@ -217,7 +217,7 @@
           <path d="M${x + dir * 12} 115 l${dir * 6} -5 M${x + dir * 8} 111 l${dir * 4} -6" stroke="#2b1a10" stroke-width="2.4" stroke-linecap="round"/>`;
         if (shape === 'kirpikli') e += `<path d="M${x + dir * 14} 120 l${dir * 9} -3 M${x + dir * 4} 108 l${dir * 2} -8 M${x - dir * 6} 109 l${-dir * 1} -7 M${x + dir * 9} 138 l${dir * 4} 4 M${x + dir * 3} 140 l${dir * 1} 5" stroke="#2b1a10" stroke-width="2.4" stroke-linecap="round"/>`;
       }
-      return `<g class="eye">${e}</g><path d="M${x - 11} 99 Q${x} 93 ${x + 11} 99" stroke="${brow}" stroke-width="3" fill="none" stroke-linecap="round"/>`;
+      return `<g class="eye">${e}</g><path class="eyeH" d="M${x - 13} 129 Q${x} 113 ${x + 13} 129" stroke="#2b1a10" stroke-width="4" fill="none" stroke-linecap="round"/><path d="M${x - 11} 99 Q${x} 93 ${x + 11} 99" stroke="${brow}" stroke-width="3" fill="none" stroke-linecap="round"/>`;
     }).join('');
   }
   function face(s) {
@@ -229,6 +229,7 @@
     if (s.cil) out += [[108, 143], [114, 149], [102, 150], [192, 143], [186, 149], [198, 150], [145, 136], [155, 136]].map(([x, y]) => `<circle cx="${x}" cy="${y}" r="1.7" fill="${shade(s.skin, -0.35)}"/>`).join('');
     const lip = s.lip || '#ff7aa2';
     out += `<g class="mouthN"><path d="M136 156 Q150 172 164 156 Q150 162 136 156Z" fill="${lip}" stroke="${shade(lip, -0.25)}" stroke-width="1.5"/></g>
+            <g class="mouthL"><path d="M132 152 Q150 152 168 152 Q166 176 150 178 Q134 176 132 152Z" fill="#8a1c3c" stroke="${shade(lip, -0.25)}" stroke-width="3"/><path d="M136 153 L164 153 L162 159 L138 159Z" fill="#fff"/><ellipse cx="150" cy="171" rx="9" ry="5" fill="#ff7a9a"/></g>
             <g class="mouthK"><path transform="translate(150 161) scale(.7)" d="${HEART}" fill="${lip}" stroke="${shade(lip, -0.25)}" stroke-width="2"/></g>`;
     return out;
   }
@@ -343,7 +344,7 @@
             <ellipse cx="150" cy="118" rx="58" ry="62" fill="${k}"/>`;
   }
 
-  const DEFS = `<style>.mouthK{display:none}</style><defs>
+  const DEFS = `<style>.mouthK,.mouthL,.eyeH{display:none}</style><defs>
     <clipPath id="faceClip"><ellipse cx="150" cy="118" rx="58" ry="62"/></clipPath>
     <filter id="pBlur6" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="4"/></filter>
     <filter id="pBlur2" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="1.6"/></filter>

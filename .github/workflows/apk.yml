@@ -23,6 +23,27 @@ jobs:
           distribution: temurin
           java-version: 21
 
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Ses önbelleği
+        uses: actions/cache@v4
+        with:
+          path: |
+            www/ses/nese
+            www/ses/minik
+          key: sesler-${{ hashFiles('www/phrases.js', 'tools/gen_voices.py') }}
+          restore-keys: sesler-
+
+      - name: Doğal Türkçe ses paketlerini üret
+        continue-on-error: true
+        run: |
+          pip install edge-tts
+          node tools/list_phrases.js > phrases.json
+          python tools/gen_voices.py phrases.json
+          du -sh www/ses/*
+
       - name: Paketleri kur
         run: npm install
 
